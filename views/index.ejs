@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mongo Upload Files</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        Choose File: <input type="file" name="file">
+        <input type="submit" value="Submit">
+    </form><br>
+    <hr><br>
+    <% if(files){
+        files.forEach(function(file){
+            if(file.isImage){ %>
+                <img src="image/<%= file.filename %>">
+            <% } else { %>
+                <%= file.filename %>
+            <% } 
+        })
+    } else { %>
+        <p>No files to show</p>
+    <% } %>
+</body>
+</html>
